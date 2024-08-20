@@ -1,4 +1,4 @@
-import browser.BrowserPage;
+import browser.WebDriverManager;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
 import org.junit.Assert;
@@ -7,14 +7,14 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import pageobject.MainPage;
 
-public class TransitionsSectionsConstructorTest extends BrowserPage {
+public class TransitionsSectionsConstructorTest extends WebDriverManager {
     WebDriver driver;
     MainPage mainPage;
     private String url = "https://stellarburgers.nomoreparties.site/";
 
     @Before
     public void setUp() {
-        BrowserPage browserPage = new BrowserPage();
+        WebDriverManager browserPage = new WebDriverManager();
         driver = browserPage.getWebdriver("chrome");
         driver.get(url);
         mainPage = new MainPage(driver);

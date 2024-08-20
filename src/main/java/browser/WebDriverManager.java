@@ -5,7 +5,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.Locale;
 
-public class BrowserPage {
+public class WebDriverManager {
 
     public WebDriver getWebdriver(String browserName) {
         switch (browserName.toLowerCase(Locale.ROOT)) {

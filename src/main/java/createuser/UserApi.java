@@ -6,27 +6,27 @@ import io.restassured.response.Response;
 import static io.restassured.RestAssured.given;
 
 public class UserApi {
-    private static final String url = "https://stellarburgers.nomoreparties.site";
-    private static final String hand_create_user = "/api/auth/register";
-    private static final String hand_login_user = "/api/auth/login";
-    private static final String hand_delete_user = "/api/auth/user";
+    private static final String URL = "https://stellarburgers.nomoreparties.site";
+    private static final String CREATE_USER = "/api/auth/register";
+    private static final String LOGIN_USER = "/api/auth/login";
+    private static final String DELETE_USER = "/api/auth/user";
 
     @Step("Создание пользователя")
     public static Response createUser(User user) {
-        return given()
+        return given().log().all()
                 .header("Content-type", "application/json")
                 .and()
                 .body(user)
-                .post(url + hand_create_user);
+                .post(URL + CREATE_USER);
     }
 
     @Step("Авторизация пользователя")
     public static Response loginUser(User user) {
-        return given()
+        return given().log().all()
                 .header("Content-type", "application/json")
                 .and()
                 .body(user)
-                .post(url + hand_login_user);
+                .post(URL + LOGIN_USER);
     }
 
     @Step("Удаление пользователя")
@@ -34,7 +34,7 @@ public class UserApi {
         return given()
                 .header("Authorization", accessToken)
                 .when()
-                .delete(url + hand_delete_user);
+                .delete(URL + DELETE_USER);
     }
 
 }

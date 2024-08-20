@@ -1,8 +1,9 @@
-import browser.BrowserPage;
+import browser.WebDriverManager;
 import createuser.User;
 import createuser.UserApi;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
@@ -10,7 +11,7 @@ import org.openqa.selenium.html5.LocalStorage;
 import org.openqa.selenium.html5.WebStorage;
 import pageobject.*;
 
-public class LoginPageTest extends BrowserPage {
+public class LoginPageTest extends WebDriverManager {
     WebDriver driver;
     private String url = "https://stellarburgers.nomoreparties.site/";
     private User user;
@@ -23,7 +24,7 @@ public class LoginPageTest extends BrowserPage {
 
     @Before
     public void setUp() {
-        BrowserPage browserPage = new BrowserPage();
+        WebDriverManager browserPage = new WebDriverManager();
         driver = browserPage.getWebdriver("chrome");
         driver.get(url);
         user = User.makeRandomUser();
@@ -44,7 +45,7 @@ public class LoginPageTest extends BrowserPage {
         LocalStorage localStorage = ((WebStorage) driver).getLocalStorage();
         accessToken = localStorage.getItem("accessToken");
         mainPage.waitForLoadMainPage();
-
+        Assert.assertTrue("Элемент отсутствует", driver.findElement(mainPage.inscriptionMakeBurger).isDisplayed());
     }
 
     @Test
@@ -55,7 +56,7 @@ public class LoginPageTest extends BrowserPage {
         LocalStorage localStorage = ((WebStorage) driver).getLocalStorage();
         accessToken = localStorage.getItem("accessToken");
         mainPage.waitForLoadMainPage();
-
+        Assert.assertTrue("Элемент отсутствует", driver.findElement(mainPage.inscriptionMakeBurger).isDisplayed());
     }
 
     @Test
@@ -68,6 +69,7 @@ public class LoginPageTest extends BrowserPage {
         LocalStorage localStorage = ((WebStorage) driver).getLocalStorage();
         accessToken = localStorage.getItem("accessToken");
         mainPage.waitForLoadMainPage();
+        Assert.assertTrue("Элемент отсутствует", driver.findElement(mainPage.inscriptionMakeBurger).isDisplayed());
     }
 
     @Test
@@ -81,6 +83,7 @@ public class LoginPageTest extends BrowserPage {
         LocalStorage localStorage = ((WebStorage) driver).getLocalStorage();
         accessToken = localStorage.getItem("accessToken");
         mainPage.waitForLoadMainPage();
+        Assert.assertTrue("Элемент отсутствует", driver.findElement(mainPage.inscriptionMakeBurger).isDisplayed());
     }
 
     @After

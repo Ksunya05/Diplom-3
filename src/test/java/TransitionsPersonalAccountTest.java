@@ -1,4 +1,4 @@
-import browser.BrowserPage;
+import browser.WebDriverManager;
 import createuser.User;
 import createuser.UserApi;
 import io.qameta.allure.junit4.DisplayName;
@@ -14,7 +14,7 @@ import pageobject.LoginPage;
 import pageobject.MainPage;
 import pageobject.RegistrationPage;
 
-public class TransitionsPersonalAccountTest extends BrowserPage {
+public class TransitionsPersonalAccountTest extends WebDriverManager {
     WebDriver driver;
     private String url = "https://stellarburgers.nomoreparties.site/";
     private User user;
@@ -27,7 +27,7 @@ public class TransitionsPersonalAccountTest extends BrowserPage {
 
     @Before
     public void setUp() {
-        BrowserPage browserPage = new BrowserPage();
+        WebDriverManager browserPage = new WebDriverManager();
         driver = browserPage.getWebdriver("chrome");
         driver.get(url);
         user = User.makeRandomUser();

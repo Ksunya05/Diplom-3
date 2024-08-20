@@ -1,4 +1,4 @@
-import browser.BrowserPage;
+import browser.WebDriverManager;
 import createuser.User;
 import createuser.UserApi;
 import io.qameta.allure.junit4.DisplayName;
@@ -13,7 +13,7 @@ import pageobject.LoginPage;
 import pageobject.MainPage;
 import pageobject.RegistrationPage;
 
-public class RegistrationUserTest extends BrowserPage {
+public class RegistrationUserTest extends WebDriverManager {
     private String url = "https://stellarburgers.nomoreparties.site/";
     private User user;
     private String accessToken;
@@ -25,7 +25,7 @@ public class RegistrationUserTest extends BrowserPage {
     @Before
     public void setUp() {
 
-        BrowserPage browserPage = new BrowserPage();
+        WebDriverManager browserPage = new WebDriverManager();
         driver = browserPage.getWebdriver("chrome");
         mainPage = new MainPage(driver);
         registrationPage = new RegistrationPage(driver);
@@ -46,7 +46,8 @@ public class RegistrationUserTest extends BrowserPage {
         loginPage.logInUser(user.getEmail(), user.getPassword());
         LocalStorage localStorage = ((WebStorage) driver).getLocalStorage();
         accessToken = localStorage.getItem("accessToken");
-
+        mainPage.waitForLoadMainPage();
+        Assert.assertTrue("Элемент отсутствует", driver.findElement(mainPage.inscriptionMakeBurger).isDisplayed());
     }
 
     @Test
